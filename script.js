@@ -1,49 +1,33 @@
-let names = [];
+// Preassigned names to emojis
+const participants = [
+  { name: "Navin 🎄", assigned: false },
+  { name: "Jason 🎅", assigned: false },
+  { name: "Carline ❄️", assigned: false },
+  { name: "Kat 🎁", assigned: false },
+  { name: "Elliott 🍪", assigned: false },
+  { name: "Loveleen 🌟", assigned: false },
+  { name: "Kami 🎉", assigned: false },
+  { name: "Mark 🧦", assigned: false },
+  { name: "Chris 🔔", assigned: false },
+];
 
-// Add name to the list
-function addName() {
-  const nameInput = document.getElementById("nameInput");
-  const name = nameInput.value.trim();
+function assignSecretSanta() {
+  // Filter out already assigned participants
+  const availableParticipants = participants.filter(person => !person.assigned);
 
-  if (name && !names.includes(name)) {
-    names.push(name);
-    displayNames();
-    nameInput.value = "";
-  }
-}
-
-// Display list of added names
-function displayNames() {
-  const nameList = document.getElementById("nameList");
-  nameList.innerHTML = "Participants: " + names.join(", ");
-}
-
-// Assign Secret Santas randomly
-function assignSecretSantas() {
-  if (names.length < 2) {
-    alert("Please add at least 2 participants.");
+  // Check if there are still names left to assign
+  if (availableParticipants.length === 0) {
+    document.getElementById("result").innerText = "All names have been assigned!";
     return;
   }
 
-  const shuffledNames = [...names].sort(() => 0.5 - Math.random());
-  const results = {};
+  // Randomly select a name from the available participants
+  const randomIndex = Math.floor(Math.random() * availableParticipants.length);
+  const selectedPerson = availableParticipants[randomIndex];
 
-  shuffledNames.forEach((name, index) => {
-    const santaFor = shuffledNames[(index + 1) % shuffledNames.length];
-    results[name] = santaFor;
-  });
+  // Mark the selected person as assigned
+  selectedPerson.assigned = true;
 
-  displayResults(results);
-}
-
-// Display results
-function displayResults(results) {
-  const resultsDiv = document.getElementById("results");
-  resultsDiv.innerHTML = "<h3>Secret Santa Assignments</h3>";
-
-  Object.entries(results).forEach(([santa, recipient]) => {
-    const resultLine = document.createElement("p");
-    resultLine.textContent = `${santa} ➔ ${recipient}`;
-    resultsDiv.appendChild(resultLine);
-  });
+  // Display the assigned Secret Santa in the result div
+  document.getElementById("result").innerText = `Your Secret Santa is: ${selectedPerson.name}`;
 }
