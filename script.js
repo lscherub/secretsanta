@@ -30,4 +30,8 @@ function assignSecretSanta() {
 
   // Display the assigned Secret Santa in the result div
   document.getElementById("result").innerText = `Your Secret Santa is: ${selectedPerson.name}`;
+
+  // Show the Santa GIF with fade-in effect
+  const santaGif = document.getElementById("santa");
+  santaGif.style.display = "block";
 }
