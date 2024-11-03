@@ -38,5 +38,25 @@ function assignSecretSanta() {
   // Hide the button after it's clicked
   const button = document.querySelector(".draw-button");
   button.style.display = "none";
+
+  // Save the assigned state in local storage to prevent re-draw
+  localStorage.setItem("secretSantaAssigned", true);
+  localStorage.setItem("assignedName", selectedPerson.name); // Save the assigned name as well
 }
+
+// Function to check if a name was already assigned
+function checkAssignmentStatus() {
+  const isAssigned = localStorage.getItem("secretSantaAssigned");
+  const assignedName = localStorage.getItem("assignedName");
+
+  if (isAssigned) {
+    // If already assigned, display the assigned name and hide the button
+    document.getElementById("result").innerText = `Your Secret Santa is: ${assignedName}`;
+    document.querySelector(".draw-button").style.display = "none";
+    document.getElementById("santa").style.display = "block"; // Show Santa if already assigned
+  }
+}
+
+// Run the check on page load
+window.onload = checkAssignmentStatus;
 
