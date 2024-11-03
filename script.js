@@ -34,4 +34,9 @@ function assignSecretSanta() {
   // Show the Santa GIF with fade-in effect
   const santaGif = document.getElementById("santa");
   santaGif.style.display = "block";
+
+  // Hide the button after it's clicked
+  const button = document.querySelector(".draw-button");
+  button.style.display = "none";
 }
+
