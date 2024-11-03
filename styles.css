@@ -92,17 +92,20 @@ h1 {
   color: #333;
 }
 
-/* Santa animation */
+/* Hide Santa initially and add fade-in animation */
 .santa {
-  position: absolute;
-  bottom: 10px;
-  left: -100px;
+  display: none;
   width: 100px;
-  animation: moveSanta 15s linear infinite;
+  margin-top: 20px;
+  animation: fadeIn 1s ease-in-out forwards;
 }
 
-@keyframes moveSanta {
-  0% {
-    transform: translateX(-100px);
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
-  100% {
+  to {
+    opacity: 1;
+  }
+}
