@@ -92,28 +92,10 @@ h1 {
   color: #333;
 }
 
-/* Santa animation */
-.santa {
-  position: absolute;
-  bottom: 10px;
-  left: -100px;
-  width: 100px;
-  animation: moveSanta 15s linear infinite;
-}
-
-@keyframes moveSanta {
-  0% {
-    transform: translateX(-100px);
-  }
-  100% {
-    transform: translateX(100vw);
-  }
-}
-
 /* Hide Santa initially and add fade-in animation */
 .santa {
   display: none;
-  width: 100px;
+  width: 100%;
   margin-top: 20px;
   animation: fadeIn 1s ease-in-out forwards;
 }
